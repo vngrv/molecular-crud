@@ -1,98 +1,63 @@
-"use strict";
-
 const { MoleculerClientError } = require("moleculer").Errors;
-const bcrypt   = require("bcrypt");
-const jwt    = require("jsonwebtoken");
-const DbService = require("../mixins/db.mixin");
 
-/**
- * @typedef {import('moleculer').Context} Context Moleculer's Context
- */
+const bcrypt = require("bcrypt");
+// const jwt = require("jsonwebtoken");
+
+const DbService = require("../mixins/db.mixin");
+// const CacheCleanerMixin = require("../mixins/cache.cleaner.mixin");
 
 module.exports = {
 	name: "users",
-    
 	mixins: [
 		DbService("users")
 	],
 
 	/**
-	 * Settings
+	 * Default settings
 	 */
 	settings: {
 		/** Secret for JWT */
 		JWT_SECRET: process.env.JWT_SECRET || "jwt-secret",
+
 		/** Public fields */
 		fields: ["_id", "firstname", "lastname", "email", "bio", "image"],
+
 		/** Validator schema for entity */
 		entityValidator: {
-			firstname: { type: "string",  optional: true},
-			lastname: { type: "string", optional: true},
-			email: { type: "email" ,  optional: true},
+			firstname: { type: "string"},
+			lastname: { type: "string"},
+			email: { type: "email" },
 			password: { type: "string", min: 6 },
 			bio: { type: "string", optional: true },
 			image: { type: "string", optional: true },
 		}
-
 	},
-
-	/**
-	 * Dependencies
-	 */
-	dependencies: [],
 
 	/**
 	 * Actions
 	 */
 	actions: {
-
 		/**
-		 * Say a 'Hello' action.
+		 * Register a new user
 		 *
-		 * @returns
-		 */
-		hello: {
-			rest: {
-				method: "GET",
-				path: "/hello"
-			},
-			async handler() {
-				return "Hello Moleculer";
-			}
-		},
-
-		/**
-		 * Welcome, a username
+		 * @actions
+		 * @param {Object} user - User entity
 		 *
-		 * @param {String} name - User name
+		 * @returns {Object} Created entity & token
 		 */
-		welcome: {
-			rest: "/welcome",
-			params: {
-				name: "string"
-			},
-			/** @param {Context} ctx  */
-			async handler(ctx) {
-				return `Welcome, ${ctx.params.name}`;
-			}
-		},
-		/**
-         * Register a new user
-         *
-         * @actions
-         * @param {Object} user - User entity
-         *
-         * @returns {Object} Created entity & token
-         */
 		create: {
-			params: { 
-                firstname: { type: "string"},
-			    lastname: { type: "string"},
-			    email: { type: "email" },
-			    password: { type: "string", min: 6 }
-            },
+			params: {
+				firstname: { type: "string"},
+				lastname: { type: "string"},
+				email: { type: "email" },
+				password: { type: "string", min: 6 },
+				bio: { type: "string", optional: true },
+				image: { type: "string", optional: true }
+			},
 			async handler(ctx) {
+				// this.logger.info(ctx);
 				let entity = ctx.params;
+				this.logger.info(entity);
 				await this.validateEntity(entity);
 				if (entity.email) {
 					const found = await this.adapter.findOne({ email: entity.email });
@@ -110,41 +75,6 @@ module.exports = {
 				const user = await this.transformDocuments(ctx, {}, doc);
 				return this.entityChanged("created", user, ctx).then(() => user);
 			}
-		},
-	},
-
-	/**
-	 * Events
-	 */
-	events: {
-
-	},
-
-	/**
-	 * Methods
-	 */
-	methods: {
-
-	},
-
-	/**
-	 * Service created lifecycle event handler
-	 */
-	created() {
-
-	},
-
-	/**
-	 * Service started lifecycle event handler
-	 */
-	async started() {
-
-	},
-
-	/**
-	 * Service stopped lifecycle event handler
-	 */
-	async stopped() {
-
+		}
 	}
 };
