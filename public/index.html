@@ -519,6 +519,7 @@
 					menu: [
 						{ id: "home", caption: "Home" },
 						{ id: "greeter", caption: "Greeter service" },
+						{ id: "users", caption: "Users service" },
 						{ id: "products", caption: "Products service" },
 						{ id: "nodes", caption: "Nodes" },
 						{ id: "services", caption: "Services" }
@@ -531,6 +532,14 @@
 
 							{ id: "welcome", action: "greeter.welcome", rest: "/api/greeter/welcome", fields: [
 								{ field: "name", label: "Name", type: "text", paramType: "param", model: "welcomeName" }
+							], response: null, status: null, duration: null }
+						],
+						users: [
+							{ id: "create", action: "users.create", rest: "/api/users/create", method: "POST", fields: [
+								{ field: "name", label: "Name", type: "text", paramType: "param", model: "welcomeName" },
+								{ field: "lastname", label: "Last Name", type: "text", paramType: "param", model: "welcomeName" },
+								{ field: "email", label: "Email", type: "text", paramType: "param", model: "welcomeName" },
+								{ field: "password", label: "Password", type: "text", paramType: "param", model: "test_test_test" }
 							], response: null, status: null, duration: null }
 						],
 						products: [
