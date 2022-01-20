@@ -535,12 +535,36 @@
 							], response: null, status: null, duration: null }
 						],
 						users: [
-							{ id: "create", action: "users.create", rest: "/api/users/create", method: "POST", fields: [
-								{ field: "firstname", label: "FirstName", type: "text", paramType: "param", model: "firstname" },
-								{ field: "lastname", label: "Last Name", type: "text", paramType: "param", model: "lastname" },
-								{ field: "email", label: "Email", type: "text", paramType: "param", model: "email" },
-								{ field: "password", label: "Password", type: "text", paramType: "param", model: "test_test_test" }
-							], response: null, status: null, duration: null }
+							{ 
+								id: "list", 
+								action: "users.list", 
+								rest: "/api/users/", 
+								response: null, 
+								status: null, 
+								duration: null, 
+								afterResponse: response => !this.fields.userID && (this.fields.userID = response.rows[0]._id) 
+							}, { 
+								id: "create", 
+								action: "users.create", 
+								rest: "/api/users/create", 
+								method: "POST", 
+								fields: [
+									{ field: "firstname", label: "FirstName", type: "text", paramType: "param", model: "firstname" },
+									{ field: "lastname", label: "Last Name", type: "text", paramType: "param", model: "lastname" },
+									{ field: "email", label: "Email", type: "text", paramType: "param", model: "email" },
+									{ field: "password", label: "Password", type: "text", paramType: "param", model: "password" }
+								], 
+								response: null, 
+								status: null, 
+								duration: null 
+							}, { 
+								id: "get", 
+								action: "users.get", rest: "/api/users/:id", method: "GET", fields: [
+									{ field: "id", label: "ID", type: "text", paramType: "url", model: "userID" }
+								], response: null, status: null, duration: null 
+							}, { id: "delete", action: "users.delete", rest: "/api/users/:id", method: "DELETE", fields: [
+								{ field: "id", label: "ID", type: "text", paramType: "url", model: "userID" }
+							], response: null, status: null, duration: null },
 						],
 						products: [
 							{ id: "list", action: "products.list", rest: "/api/products/", response: null, status: null, duration: null, afterResponse: response => !this.fields.productID && (this.fields.productID = response.rows[0]._id) },
