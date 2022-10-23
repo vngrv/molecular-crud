@@ -1,4 +1,5 @@
 "use strict";
+require("@moleculer/lab")
 
 /**
  * Moleculer ServiceBroker configuration file
@@ -154,20 +155,7 @@ module.exports = {
 	metrics: {
 		enabled: true,
 		// Available built-in reporters: "Console", "CSV", "Event", "Prometheus", "Datadog", "StatsD"
-		reporter: {
-			type: "Prometheus",
-			options: {
-				// HTTP port
-				port: 3030,
-				// HTTP URL path
-				path: "/metrics",
-				// Default labels which are appended to all metrics labels
-				defaultLabels: registry => ({
-					namespace: registry.broker.namespace,
-					nodeID: registry.broker.nodeID
-				})
-			}
-		}
+		reporter: "Laboratory"
 	},
 
 	// Enable built-in tracing function. More info: https://moleculer.services/docs/0.14/tracing.html

@@ -1,5 +1,3 @@
-{"firstname":"Robbie","lastname":"Heygate","email":"test2@gmail.com","password":"$2b$10$ZJD7I8RHUH1SPkwyLyrKf.X1LWVl81heBkEYTqquw9dLPg8vzaWzC","bio":"test","image":null,"createdAt":{"$$date":1642681494336},"_id":"IoWlr6kJYNmwjEAz"}
+{"firstname":"test","lastname":"test","email":"test@test.ryу","password":"$2b$10$o4iJsI5CDxU0oBGHDaVoYe9rQnwMAnTjNNW2Jd4lsp0b9doUkDnCK","bio":"","image":null,"createdAt":{"$$date":1642692507211},"_id":"6RV38NoU9Mo8yhRw"}
 {"firstname":"test","lastname":"test","email":"test@test.ry","password":"$2b$10$EpnmZA/0WnP/9mhNLr5OpO/RrmeFwpMVfRj0py4G2Cbt3e.dyNnl2","bio":"","image":null,"createdAt":{"$$date":1642682496725},"_id":"JUNKFOxyQA0OedDL"}
 {"firstname":"Robbie","lastname":"Heygate","email":"test@gmail.com","password":"$2b$10$FVvOgXWXhu9QQxTRCbo8GeQkqMeblUUIrmogEw94d80Obb0c25NL.","bio":"","image":null,"createdAt":{"$$date":1642681457855},"_id":"uqKJtoHAac7HfxDW"}
-{"$$deleted":true,"_id":"IoWlr6kJYNmwjEAz"}
-{"firstname":"test","lastname":"test","email":"test@test.ryу","password":"$2b$10$o4iJsI5CDxU0oBGHDaVoYe9rQnwMAnTjNNW2Jd4lsp0b9doUkDnCK","bio":"","image":null,"createdAt":{"$$date":1642692507211},"_id":"6RV38NoU9Mo8yhRw"}

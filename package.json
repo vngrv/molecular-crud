@@ -4,6 +4,7 @@
   "description": "My Moleculer-based microservices project",
   "scripts": {
     "dev": "moleculer-runner --repl --hot services/**/*.service.js",
+    "load-env": "moleculer-runner --env",
     "start": "moleculer-runner",
     "cli": "moleculer connect Redis",
     "ci": "jest --watch",
@@ -25,7 +26,9 @@
     "moleculer-repl": "^0.6.6"
   },
   "dependencies": {
+    "@moleculer/lab": "^0.6.4",
     "bcrypt": "^5.0.1",
+    "dotenv": "^16.0.3",
     "ioredis": "^4.27.9",
     "jsonwebtoken": "^8.5.1",
     "moleculer": "^0.14.16",
